@@ -1,0 +1,38 @@
+<p-card header="Registrar Usuario" class="flex justify-content-center" >
+    <form class="flex flex-column" [formGroup]="formRegistro" (ngSubmit)="crearCuenta()" >
+        
+        <input type="text" formControlName="correo" pInputText 
+            placeholder="Correo" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('correo') }"> 
+            
+        <input type="text" class="mt-2" formControlName="nombre" pInputText 
+            placeholder="nombre" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('nombre') }"> 
+
+        <input type="password" class="mt-2" formControlName="password" pInputText 
+            placeholder="Contraseña" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('password') }">         
+
+        <input type="text" class="mt-2" formControlName="rut" pInputText 
+            placeholder="Rut" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('rut') }">
+
+        <div class="p-inputgroup mt-2 align-items-center">
+
+            <input type="number" class="h-3rem" pInputText 
+            [ngClass]="{'ng-invalid ng-dirty':campoEsValido('edad') }"
+                placeholder="Edad" min="0" max="120" formControlName="edad" >
+            <div class="ml-2" >
+                <h5>Genero:</h5>
+                <p-selectButton [options]="generoOpciones" 
+                    [ngClass]="{'ng-invalid ng-dirty':campoEsValido('genero') }" 
+                    optionLabel="label" optionValue="value" formControlName="genero">
+                </p-selectButton>
+            </div>
+        </div>
+
+        <button pButton type="submit" label="Listo, Crear!" 
+            class="p-button-outlined mt-2" >
+        </button>
+        <button pButton type="button" label="Volver al inicio" 
+            class="p-button-secondary mt-3"  routerLink="/inicio" ></button>
+    </form>
+    <!-- Alerta -->
+    <p-toast></p-toast>
+</p-card>

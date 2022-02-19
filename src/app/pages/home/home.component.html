@@ -1,0 +1,30 @@
+<header>
+    <p-menubar [model]="items" styleClass="surface-200"></p-menubar>
+</header>
+
+<main class="mt-3 text-center">
+    <h1 class="scalein uppercase text-600">Crea votaciones Online</h1>
+    <hr>
+
+    <p class="text-center scalein text-xl my-3 text-700">
+        Tú página para generar votaciones públicas o privadas
+        con visualización de datos en formato de gráficas e historial.
+    </p>
+
+
+    <p-card styleClass="inline-flex w-7 justify-content-center surface-200">
+        <h3>Nombre Votacion: <span class="font-light text-700">Comida para día Viernes</span> </h3>
+        <app-grafica [type]="'pie'" [data]="data"></app-grafica>
+
+        <ng-template pTemplate="footer">
+
+            <button pButton type="button" class="p-button-raised mr-4" routerLink="/auth/registro">
+                Crear cuenta
+            </button>
+
+            <button pButton type="button" class="p-button-info p-button-raised" routerLink="/auth/login">
+                Iniciar Sesion
+            </button>
+        </ng-template>
+    </p-card>
+</main>

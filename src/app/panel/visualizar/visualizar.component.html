@@ -1,0 +1,73 @@
+<section class="my-2 mx-1 grid">
+    
+    <div class="col-6 mr-2">
+    
+        <p-virtualScroller [value]="votacionesAbiertas" 
+            scrollHeight="500px" 
+            [itemSize]="150" >
+            
+            <ng-template pTemplate="header">
+                <h3 class="text-600" >Votación Abiertas</h3>
+            </ng-template>
+            
+            <ng-template let-vota pTemplate="item">
+                <div>
+                    <div class="row flex">
+                        
+                        <div class="col-6">
+                            <h5 class="font-light underline" >Titulo Votación:</h5>
+                            <h6> {{vota.titulo | uppercase }} </h6> 
+    
+                        </div>
+                        <div class="col-6 " >
+                            <button pButton class="m-1"
+                                routerLink="/panel/tarjeta/{{vota._id}}"
+                                 >
+                                Ver detalle
+                            </button>
+                            <button pButton 
+                                class="p-button-info m-1"
+                                routerLink="/panel/modificar/{{vota._id}}"
+                                 >
+                                Modificar
+                            </button>
+                            <button pButton
+                                class="p-button-help m-1"
+                                routerLink="/panel/voto/{{vota._id}}"
+                                
+                                >
+                                Ir a Votar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-virtualScroller>
+    </div>
+
+    <div class="col-5">
+        
+
+        <p-virtualScroller scrollHeight="500px" [itemSize]="150" >
+            <ng-template pTemplate="header">
+                <h3 class="text-600" >Votación Cerradas</h3>
+            </ng-template>
+            <ng-template let-vota pTemplate="item">
+                <div>
+                    <div class="row flex">
+                        
+                        <div class="col-6">
+                            <h5 class="font-light underline" >Titulo Votación:</h5>
+                            <h6> {{vota.titulo | uppercase }} </h6> 
+    
+                        </div>
+                        <div class="col-6" >
+                            <button pButton >Ver detalle</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-virtualScroller>
+    </div>
+
+</section>

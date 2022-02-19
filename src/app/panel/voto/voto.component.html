@@ -1,0 +1,26 @@
+<section class="m-2" >
+    
+    <p-card class="h-100" >
+        
+        <h2 class="my-2" >
+            Opciones de Voto: 
+        </h2>
+
+        <div *ngFor="let opc of opcionesVoto;let i = index" 
+            class="p-field-checkbox">
+            <form [formGroup]="miForm" class="flex align-items-center" >
+
+                <p-radioButton class="m-2"
+                            [inputId]="opc" 
+                            name="seleccion" [value]="opc" 
+                            formControlName="seleccion"
+                            >
+    
+                </p-radioButton>
+                <label [for]="i">{{opc}}</label>
+            </form>
+        </div>
+        <button pButton (click)="enviarVoto()" >Listo</button>
+        
+    </p-card>
+</section>

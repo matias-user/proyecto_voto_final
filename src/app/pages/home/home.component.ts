@@ -1,0 +1,47 @@
+import { Component, OnInit } from '@angular/core';
+import { MenuItem, PrimeIcons } from 'primeng/api';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+
+  items!: MenuItem[];
+  data!: any;
+  constructor() { }
+
+  ngOnInit(): void {
+    this.items = [
+      {
+        label: 'Ingresa a tu Cuenta',
+        routerLink: '/auth',
+        icon: PrimeIcons.USER,
+      },
+      {
+        label: 'Panel de Votaciones',
+        routerLink: '/panel',
+        icon: PrimeIcons.PENCIL,
+      },
+    ],
+      this.data = {
+        labels: [ `Pizza`, `Empanadas`, `Sushi`, `Arepas` ],
+        datasets: [
+          {
+            data: [5, 3, 3, 2],
+            backgroundColor: [
+              "#11589E",
+              "#EB5349",
+              "#318EEB",
+              "#D5EB1A"
+            ],
+            hoverBackgroundColor: [
+              "#909E19"
+            ]
+          }
+        ]
+
+      }
+  }
+}

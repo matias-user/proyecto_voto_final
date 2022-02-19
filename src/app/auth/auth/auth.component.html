@@ -1,0 +1,32 @@
+<p-card header="Autenticacion" class="flex justify-content-center " >
+    
+    <form class="flex flex-column" [formGroup]="formLogin" (ngSubmit)="ingresar()" >
+        <span class="p-input-icon-left mt-2">
+            <i class="pi pi-user"></i>
+            <input type="text" pInputText campoEsValido 
+                [ngClass]="{'ng-invalid ng-dirty':campoEsValido('correo') }"
+                placeholder="Correo" formControlName="correo">         
+        </span>
+
+        <input type="password" class="mt-2" pInputText formControlName="password" 
+            placeholder="Contraseña" 
+            [ngClass]="{'ng-invalid ng-dirty':campoEsValido('password') }">         
+
+        <button pButton type="submit" label="Ingresar" class="p-button-outlined mt-2"></button>
+        <span *ngIf="bandera" class="text-center mt-1" style="color: #ff000098;" >
+            Nombre o contraseña invalidos
+        </span>
+        <button pButton type="button" label="Crear cuenta" 
+            class="p-button-secondary mt-3"  routerLink="/auth/registro" ></button>
+    </form>
+    <ng-template pTemplate="footer">
+        <button pButton class="p-button-text text-indigo-700" routerLink="/inicio" >
+
+            <i class="pi pi-home " >
+                <span class="ml-1  font-bold">Inicio</span>
+            </i>
+        </button>
+    </ng-template>
+</p-card>
+<!-- Mensaje error -->
+<p-toast></p-toast>

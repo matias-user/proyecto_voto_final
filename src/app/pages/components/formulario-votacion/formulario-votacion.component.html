@@ -1,0 +1,77 @@
+<h2 class="text-center mt-3" >{{titulo}}</h2>
+<div class="flex justify-content-center">
+
+    <p-card styleClass="my-2 w-full shadow-2">
+        <form [formGroup]="miFormulario"  >
+            <div class="grid">
+                <div class="p-field col-5">
+                    <label for="titulo">Titulo Votacion: </label>
+                    <input id="titulo" type="text" 
+                        aria-describedby="titulo-help" pInputText
+                        formControlName="titulo" />
+                </div>
+                <div class="p-field col-5">
+                    <label for="titulo">Opciones votar: </label>
+                    <div class="p-inputgroup">
+                        <input type="text" pInputText id="opcion"
+                            [formControl]="opciones" >      
+                        <button type="button" pButton 
+                            class=" p-button-outlined"
+                            (click)="agregarOpcion()" >
+                            Agregar
+                        </button>                          
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="grid">
+                <div class="col-5"></div>
+                <div class="p-field col-5 my-1" formArrayName="opcionesVoto" >
+                    <div  *ngFor="let opc of opcionesVotar.controls; let i = index" 
+                        class="p-inputgroup">
+                        <input type="text" pInputText 
+                            readonly 
+                            [formControlName]="i"   >      
+                        <button type="button" pButton 
+                            icon="pi pi-times" class="p-button-danger p-button-outlined">
+                        </button>                          
+                    </div>
+                </div>
+            
+            </div>
+
+
+            <div class="grid">
+                <div class="p-field col-5">
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="icon">Fecha de inicio: </label>
+                        <p-calendar formControlName="inicio" [locale]="es"
+                            inputId="basic"[showIcon]="true" inputId="icon">
+                        </p-calendar>
+                    </div>                
+                </div>
+
+                <div class="p-field col-5">
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="icon">Fecha de fin:</label>
+                        <p-calendar [showIcon]="true" inputId="icon"
+                            formControlName="fin">
+
+                        </p-calendar>
+                    </div>                
+                </div>
+
+            </div>
+            <div class="grid">
+                <div class="col-5" >
+                    <button pButton type="button"
+                        label="{{nombreBoton}}" class="mt-2 p-button-outlined"
+                        (click)="guardarEncuesta()" >
+                    </button>
+                </div>
+            </div>
+            
+        </form>
+    </p-card>
+</div>
