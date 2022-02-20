@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/usuario.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  
 })
 export class AuthService {
 
@@ -14,7 +15,7 @@ export class AuthService {
   pathApiUsuarios: string = 'api/usuarios';
   pathApiLogin: string = 'api/auth';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ) { }
 
   fetchApiUsuariosCrear( body: Usuario ){
     return this.http.post( environment.urlApis + this.pathApiUsuarios, body );
@@ -22,13 +23,13 @@ export class AuthService {
   fetchAuthLogin( body: any ){
     return this.http.post( environment.urlApis + this.pathApiLogin, body);
   }
-  // verificarSiLogeado(): boolean{
-  //   if(!localStorage.getItem('isLog')){
-  //     console.log('No estas logueado para ingresar');
-  //     return false;
+  verificarSiLogeado(): Observable<boolean> {
+    if(!localStorage.getItem('isLog')){
+      console.log('No estas logueado para ingresar');
+      return of(false);
       
-  //   }
-  //   return true
+    }
+    return of( true ) 
 
-  // }
+  }
 }

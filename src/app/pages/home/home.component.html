@@ -1,5 +1,5 @@
 <header>
-    <p-menubar [model]="items" styleClass="surface-200"></p-menubar>
+    <p-menubar *ngIf="isLog |async" [model]="items" styleClass="surface-200" ></p-menubar>
 </header>
 
 <main class="text-center">
@@ -27,9 +27,9 @@
         </div>
         <div class="col-5">
             <p-card styleClass="surface-200">
-                <h3 class="font-light text-xl">
+                <h3 class="text-xl">
                     Nombre Votacion:
-                    <span class="font-semibold text-700">Comida para día Viernes</span>
+                    <span class="font-light text-700">Comida para día Viernes</span>
                 </h3>
                 <app-grafica [type]="'pie'" [data]="data">
                 </app-grafica>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,12 @@ export class HomeComponent implements OnInit {
 
   items!: MenuItem[];
   data!: any;
-  constructor() { }
+  _isLog!: Observable<boolean> ;
+  constructor( private authService: AuthService ) { }
+
+  get isLog(){
+    return this._isLog;
+  }
 
   ngOnInit(): void {
     this.items = [
@@ -48,5 +55,6 @@ export class HomeComponent implements OnInit {
         ]
 
       }
+      this._isLog = this.authService.verificarSiLogeado();
   }
 }

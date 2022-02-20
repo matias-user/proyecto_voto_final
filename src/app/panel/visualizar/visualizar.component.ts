@@ -14,13 +14,10 @@ export class VisualizarComponent implements OnInit {
 
   ngOnInit(): void {
     const token = JSON.stringify( localStorage.getItem('x-token') );
-    const uid = JSON.stringify( localStorage.getItem('_id') );
-    
-    const longitudToken = token.length;
-    const tokenSinComillas = token.slice( 1, longitudToken -1 )
-    console.log(token);
-    
 
+    const longitudToken = token.length;
+    const tokenSinComillas = token.slice( 1, longitudToken -1 );
+    
     this.panelService.fetchObtenerEncuestas( tokenSinComillas ).pipe(
       tap( (result: any)  => {
         this.votacionesAbiertas = 
