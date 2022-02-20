@@ -27,7 +27,7 @@ import {ChartModule} from 'primeng/chart';
     TableModule,
     ToastModule,
     VirtualScrollerModule,
-    RadioButtonModule
+    RadioButtonModule,
   ],
 })
 export class PrimeNgModule { }

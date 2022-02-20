@@ -1,14 +1,18 @@
-<p-card>
+<p-card styleClass="mt-3" >
     <div class="grid flex align-items-center">
 
         <div class="col-6">
-            <p-card header="Detalles">
+            <p-card header="Detalles" >
                 <div *ngIf="votacion" >
-                    <h3  >Titulo votacion: {{ votacion.titulo }}</h3>
+                    <h3  >Titulo votacion: 
+                        <span class="font-medium" >{{ votacion.titulo }}</span> 
+                    </h3>
                     <p>Fecha inicio: {{votacion.inicio | date}} </p>
                     <p>Fecha de término: {{votacion.fin | date}} </p>
                     <p>Número de votaciones: {{cantidadVotaciones}}</p>
-                    <p>Opción con más votos: {{votacionMasVotada}}</p>
+                    <p>Opción con más votos: 
+                        <span class="font-bold" >{{votacionMasVotada}} </span> 
+                    </p>
 
                 </div>
             </p-card>

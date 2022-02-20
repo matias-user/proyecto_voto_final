@@ -31,13 +31,18 @@ export class HomeComponent implements OnInit {
           {
             data: [5, 3, 3, 2],
             backgroundColor: [
-              "#11589E",
-              "#EB5349",
-              "#318EEB",
-              "#D5EB1A"
+              "#288F61",
+              "#32DB91",
+              "#DB7527",
+              "#0B3B8F",
+              "##1D61DB"
             ],
             hoverBackgroundColor: [
-              "#909E19"
+              "#0B291C",
+              "#1B754D",
+              "#914E1A",
+              "#0A327D",
+              "#0B2352"
             ]
           }
         ]
