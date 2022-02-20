@@ -14,13 +14,17 @@ export class AuthGuard implements CanLoad, CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | boolean {
       
 
-      return this.authService.verificarSiLogeado();
+
+      return true
+      // return this.authService.verificarSiLogeado();
   }
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean > | boolean {      
       
-      return this.authService.verificarSiLogeado();
+      return true
+      // return this.authService.verificarSiLogeado();
+      // return this.authService.
 
   }
 }

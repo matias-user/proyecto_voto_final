@@ -22,13 +22,13 @@ export class AuthService {
   fetchAuthLogin( body: any ){
     return this.http.post( environment.urlApis + this.pathApiLogin, body);
   }
-  verificarSiLogeado(): boolean{
-    if(!localStorage.getItem('isLog')){
-      console.log('No estas logueado para ingresar');
-      return false;
+  // verificarSiLogeado(): boolean{
+  //   if(!localStorage.getItem('isLog')){
+  //     console.log('No estas logueado para ingresar');
+  //     return false;
       
-    }
-    return true
+  //   }
+  //   return true
 
-  }
+  // }
 }

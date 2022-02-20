@@ -13,10 +13,13 @@ export class PanelService {
   constructor( private http: HttpClient ) { }
 
   fetchCrearEncuesta( body: Encuesta, token: string | null | any){
+
     // El token viene de localStorage
-    return this.http.post( this.url, body, { headers: {
+    return this.http.post( this.url, body, 
+      { headers: {
       'x-token': token 
-    } } );
+    } }
+     );
   }
   fetchObtenerEncuestas( token: string ){
     
@@ -26,6 +29,6 @@ export class PanelService {
     return this.http.get( this.url  + _id );
   }
   votar( _id:string, value: string ){
-    return this.http.put( this.url + `/${_id}/${value}`, value );
+    return this.http.put( this.url + `/${_id}/${value }`, value );
   }
 }
