@@ -1,4 +1,4 @@
-<h2 class="text-center mt-3" >{{titulo}}</h2>
+<h2 class="text-center mt-1 text-200 text-5xl" >{{titulo}}</h2>
 <div class="flex justify-content-center">
 
     <p-card styleClass="my-2 w-full shadow-2">
@@ -9,7 +9,13 @@
                     <input id="titulo" type="text" 
                         aria-describedby="titulo-help" pInputText
                         formControlName="titulo" />
+                        <br>
+                        <span *ngIf="campoEsValido('titulo')" class="text-orange-900" >
+                            Campo titulo es obligatorio
+                        </span>
                 </div>
+                
+
                 <div class="p-field col-5">
                     <label for="titulo">Opciones votar: </label>
                     <div class="p-inputgroup">
@@ -21,6 +27,9 @@
                             Agregar
                         </button>                          
                     </div>
+                    <span *ngIf="campoEsValido('opcionesVoto')" class="text-orange-900" >
+                        Campo Votar es obligatorio.
+                    </span>
                 </div>
                 
             </div>
@@ -59,7 +68,10 @@
                             formControlName="fin">
 
                         </p-calendar>
-                    </div>                
+                    </div>   
+                    <span *ngIf="campoEsValido('fin')" class="text-orange-900" >
+                        Campo fecha de fin es obligatorio
+                    </span>             
                 </div>
 
             </div>

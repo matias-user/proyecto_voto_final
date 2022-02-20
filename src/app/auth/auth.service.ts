@@ -25,7 +25,6 @@ export class AuthService {
   }
   verificarSiLogeado(): Observable<boolean> {
     if(!localStorage.getItem('isLog')){
-      console.log('No estas logueado para ingresar');
       return of(false);
       
     }

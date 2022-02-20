@@ -16,9 +16,9 @@ export class FormularioVotacionComponent implements OnInit {
   es: any;
   miFormulario :FormGroup = this.fb.group({
     titulo: ['', Validators.required ],
-    inicio: ['', Validators.required ],
+    inicio: [ new Date(),  ],
     fin: ['', Validators.required ],
-    opcionesVoto : this.fb.array( [] )
+    opcionesVoto : [this.fb.array( [] ), Validators.required]
   });
   // Este control es en cual se agregan los valores a opcionesVoto
   opciones: FormControl = new FormControl( '', Validators.required ); 
@@ -51,7 +51,17 @@ export class FormularioVotacionComponent implements OnInit {
      
   }
   guardarEncuesta(){
+    if( this.miFormulario.invalid ){
+      console.log('invalido');
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+    
     this.valorFormulario.emit( this.miFormulario.value );
     
   } 
+  campoEsValido( campo: string ){
+    return this.miFormulario.controls[campo].errors 
+    && this.miFormulario.controls[campo].touched;
+  }
 }
