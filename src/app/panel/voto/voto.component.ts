@@ -13,6 +13,7 @@ import { PanelService } from '../panel.service';
 })
 export class VotoComponent implements OnInit {
   opcionesVoto!: any[];
+  isVotoUsuario: boolean = true;
 
   constructor( private fb : FormBuilder,
               private panelService: PanelService,
@@ -23,37 +24,48 @@ export class VotoComponent implements OnInit {
     seleccion: ''
   })
 
-  selectedCategory: any = null;
-
-  categories: any[] = [{name: 'Accounting', key: 'A'}, {name: 'Marketing', key: 'M'}, {name: 'Production', key: 'P'}, {name: 'Research', key: 'R'}];
-
   ngOnInit(): void {
-    this.selectedCategory = this.categories[1];
+    const _id = localStorage.getItem('_id');
+
     this.activatedRoute.params.pipe(
       switchMap( objId => this.panelService.fetchUnaEncuesta( objId.id ) ),
       tap( (votacion:any) =>{
+        // console.log(votacion.encuestas.usuarioVoto);
+        
+        const filtrarPorUsuario = votacion.encuestas.usuarioVoto.filter( (uid:string) => uid.slice(0,24) == _id );
+        if( filtrarPorUsuario.length > 0 ){
+          this.isVotoUsuario = false;
+        }        
+        
         this.opcionesVoto = votacion.encuestas.opcionesVoto;        
       }   )
     ).subscribe()
   }
+
   enviarVoto(){
     const { seleccion } = this.miForm.value;
-    this.activatedRoute.params.pipe(
-      switchMap( objId => this.panelService.votar( objId.id, seleccion ) ),
-      tap( (result:any) => {
-        result.msg ? 
-        this.messageService.add( 
-          {severity:'success', summary:'Votación Exitosa', detail:`Listo, haz votado por ${seleccion}`} 
-          ) : 
-          {severity:'error', summary:'Votación Fallida', detail:'Hubo un error!'} 
-        
-          setTimeout(() => {
-            this.router.navigateByUrl('/panel/ver')
-          }, 2000);
+    if( !this.isVotoUsuario ){
+      
+      return this.messageService.add( {severity:'warn', summary:'No puedes realizar esta acción', detail:'Ya has votado!'} );
+      
+    }else{
 
-      } 
-      )
-    ).subscribe( console.log )
+      this.activatedRoute.params.pipe(
+        switchMap( objId => this.panelService.votar( objId.id, seleccion ) ),
+        tap( (result:any) => {
+          
+          result.msg ? this.messageService.add( {severity:'success', summary:'Votación Exitosa', detail:`Listo, haz votado por ${seleccion}`} 
+            ) : 
+            {severity:'error', summary:'Votación Fallida', detail:'Hubo un error!'} 
+             
+            setTimeout(() => {
+              this.router.navigateByUrl('/panel/ver')
+            }, 2000);
+  
+        } 
+        )
+      ).subscribe( console.log )
+    }
 
      
     

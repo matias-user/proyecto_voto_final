@@ -30,10 +30,7 @@ export class ModificarComponent implements OnInit {
      ).subscribe( console.log )
   }
   recibiendoValor( value : Encuesta){
-    console.log('hola');
     this.messageService.add( { severity:'success', detail:'Encuesta modificada!' } );
-    // this.xToken = localStorage.getItem('x-token');    
-    // this.panelService.fetchCrearEncuesta( value, this.xToken ).subscribe( console.log );
   }
 
 }

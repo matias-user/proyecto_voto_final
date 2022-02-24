@@ -20,8 +20,11 @@ export class VisualizarComponent implements OnInit {
     
     this.panelService.fetchObtenerEncuestas( tokenSinComillas ).pipe(
       tap( (result: any)  => {
+        console.log(result);
+        
         this.votacionesAbiertas = 
-              result.encuestas.filter( (votacion:any) => votacion.isAbierta == true );
+              result.encuestas.filter( (votacion:any) =>  votacion.estado == true );
+              
       } )
     ) .subscribe( );
   }

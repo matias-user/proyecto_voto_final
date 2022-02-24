@@ -60,6 +60,9 @@ export class FormularioVotacionComponent implements OnInit {
     this.valorFormulario.emit( this.miFormulario.value );
     
   } 
+  editarEncuesta(){
+    
+  }
   campoEsValido( campo: string ){
     return this.miFormulario.controls[campo].errors 
     && this.miFormulario.controls[campo].touched;
