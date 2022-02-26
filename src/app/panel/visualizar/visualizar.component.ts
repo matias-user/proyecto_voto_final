@@ -15,6 +15,9 @@ export class VisualizarComponent implements OnInit {
   constructor( private panelService: PanelService) { }
 
   ngOnInit(): void {
+    this.obtenerVotaciones();
+  }
+  obtenerVotaciones(){
     const token = JSON.stringify( localStorage.getItem('x-token') );
 
     const longitudToken = token.length;
@@ -24,12 +27,6 @@ export class VisualizarComponent implements OnInit {
       tap( (result: any)  => {
         
         this.fechaHoy = Number( new Date( Date.now() ).getTime() ) ;
-        result.encuestas.forEach( (result:any) => {
-          console.log( `Este es el de la encuesta ${Number( new Date(result.fin ).getTime() )} y este hoy ${this.fechaHoy}` );
-          
-          console.log(  Number( new Date(result.fin ).getTime() )  < this.fechaHoy && result.estado && result.fin ? true: false  );
-        } )
-
         
         this.votacionesAbiertas = 
         
@@ -40,6 +37,7 @@ export class VisualizarComponent implements OnInit {
                   return votacion 
                 }
               } );
+
             this.votacionesCerradas = result.encuestas.filter( (votacion:any) => {
               
               if( Number( new Date(votacion.fin ).getTime() )  < this.fechaHoy && votacion.estado && votacion.fin ){
@@ -50,5 +48,14 @@ export class VisualizarComponent implements OnInit {
       } )
     ) .subscribe( );
   }
+  borrarVotacion( uid: string ){
+    this.panelService.fetchBorrarEncuesta( uid ).pipe(
+      tap( msg => {
 
+        msg ? this.obtenerVotaciones() : null;
+        
+      } )
+    )
+    .subscribe( console.log )
+  }
 }

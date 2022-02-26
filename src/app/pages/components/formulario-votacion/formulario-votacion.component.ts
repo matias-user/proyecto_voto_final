@@ -12,12 +12,14 @@ export class FormularioVotacionComponent implements OnInit {
   @Input() titulo: string = '';
   @Input() nombreBoton!: string;
   @Output() valorFormulario: EventEmitter<Encuesta> = new EventEmitter();
+  @Input() tituloForm: string = '';
+  @Input() FechafinForm!: Date;
 
   es: any;
   miFormulario :FormGroup = this.fb.group({
-    titulo: ['', Validators.required ],
+    titulo: [this.tituloForm, Validators.required ],
     inicio: [ new Date(),  ],
-    fin: ['', Validators.required ],
+    fin: [this.FechafinForm, Validators.required ],
     opcionesVoto :  this.fb.array( [],Validators.required ), 
   });
   // Este control es en cual se agregan los valores a opcionesVoto
@@ -26,8 +28,6 @@ export class FormularioVotacionComponent implements OnInit {
 
   get opcionesVotar(){
         
-    // console.log( this.miFormulario.get('opcionesVoto')?.value.value );
-    
     return  this.miFormulario.get('opcionesVoto') as FormArray;
     
   };
@@ -35,7 +35,14 @@ export class FormularioVotacionComponent implements OnInit {
   constructor( private fb: FormBuilder,
                ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {     
+    setTimeout(() => {
+      
+      this.miFormulario.get('titulo')?.setValue(this.tituloForm);
+      this.miFormulario.get('fin')?.setValue( new Date(this.FechafinForm)  );
+
+    }, 300);
+
     this.es = {
       firstDayOfWeek: 1,
       dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
@@ -46,7 +53,9 @@ export class FormularioVotacionComponent implements OnInit {
       today: 'Hoy',
       clear: 'Borrar'
     }
+
   }
+
   agregarOpcion(){
     if( this.opciones.invalid ) return;
     // Agregar  a array as formArray           

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
 import { pluck, switchMap, tap } from 'rxjs/operators';
 import { Encuesta } from 'src/app/interfaces/encuesta.interface';
 import { PanelService } from '../panel.service';
@@ -15,6 +14,8 @@ import { PanelService } from '../panel.service';
 export class ModificarComponent implements OnInit {
   xToken: string | null = '';
   votacion!: any;
+  tituloDeVotacion!: string;
+  fechaFin!: Date;
 
   constructor( private messageService: MessageService,
                 private panelService: PanelService,
@@ -24,8 +25,11 @@ export class ModificarComponent implements OnInit {
     this.activatedRoute.params.pipe( 
       pluck('id'),
       switchMap( uid => this.panelService.fetchUnaEncuesta( uid ) ),
-      tap( votacion =>{
-        this.votacion = votacion
+      tap( (votacion:any) =>{
+        this.votacion = votacion;
+        
+        this.fechaFin = votacion.encuestas.fin;        
+        this.tituloDeVotacion = votacion.encuestas.titulo;
       }  )
      ).subscribe( console.log )
   }

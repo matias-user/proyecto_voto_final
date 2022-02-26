@@ -31,4 +31,7 @@ export class PanelService {
   votar( _id:string, value: string ){
     return this.http.put( this.url + `/${_id}/${value }`, value );
   }
+  fetchBorrarEncuesta( uid: string ){
+    return this.http.delete( this.url + uid );
+  }
 }
