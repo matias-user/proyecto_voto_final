@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { tap } from 'rxjs/operators';
 import { Encuesta } from 'src/app/interfaces/encuesta.interface';
 import { PanelService } from '../panel.service';
 
@@ -22,6 +23,7 @@ export class CrearComponent implements OnInit {
   recibiendoValorForm( value : Encuesta){
     this.messageService.add( { severity:'success', detail:'Encuesta creada!' } );
     this.xToken = localStorage.getItem('x-token');    
-    this.panelService.fetchCrearEncuesta( value, this.xToken ).subscribe( console.log );
+    this.panelService.fetchCrearEncuesta( value, this.xToken )
+    .subscribe();
   }
 }

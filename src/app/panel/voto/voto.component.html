@@ -20,7 +20,12 @@
                 <label [for]="i">{{opc}}</label>
             </form>
         </div>
-        <button pButton id="btnBoto" (click)="enviarVoto()" >Listo</button>
+        <button pButton
+            [disabled]="!isVotoUsuario" 
+            [ngClass]="{'p-button-warning': !isVotoUsuario}" 
+            (click)="enviarVoto()" >
+            {{ !isVotoUsuario ? 'Ya has votado' : 'Votar ahora' }}
+        </button>
         
     </p-card>
 </section>

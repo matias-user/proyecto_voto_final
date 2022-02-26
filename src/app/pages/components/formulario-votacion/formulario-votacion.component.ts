@@ -18,14 +18,18 @@ export class FormularioVotacionComponent implements OnInit {
     titulo: ['', Validators.required ],
     inicio: [ new Date(),  ],
     fin: ['', Validators.required ],
-    opcionesVoto : [this.fb.array( [] ), Validators.required]
+    opcionesVoto :  this.fb.array( [],Validators.required ), 
   });
   // Este control es en cual se agregan los valores a opcionesVoto
   opciones: FormControl = new FormControl( '', Validators.required ); 
   cantidadVotos : number = 0;
 
   get opcionesVotar(){
-    return this.miFormulario.get('opcionesVoto') as FormArray;
+        
+    // console.log( this.miFormulario.get('opcionesVoto')?.value.value );
+    
+    return  this.miFormulario.get('opcionesVoto') as FormArray;
+    
   };
 
   constructor( private fb: FormBuilder,
@@ -45,8 +49,10 @@ export class FormularioVotacionComponent implements OnInit {
   }
   agregarOpcion(){
     if( this.opciones.invalid ) return;
-    // Agregar  a array as formArray    
+    // Agregar  a array as formArray           
+    
     this.opcionesVotar.push( new FormControl(  this.opciones.value , Validators.required) );
+
     this.opciones.reset();
      
   }
@@ -58,7 +64,7 @@ export class FormularioVotacionComponent implements OnInit {
     }
     
     this.valorFormulario.emit( this.miFormulario.value );
-    
+    this.miFormulario.reset();
   } 
   editarEncuesta(){
     

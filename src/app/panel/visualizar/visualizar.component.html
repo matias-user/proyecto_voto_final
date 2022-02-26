@@ -48,21 +48,26 @@
     <div class="col-5">
         
 
-        <p-virtualScroller scrollHeight="500px" [itemSize]="150" >
+        <p-virtualScroller [value]="votacionesCerradas" 
+                    scrollHeight="500px" 
+                    [itemSize]="150" >
             <ng-template pTemplate="header">
                 <h3 class="text-600" >Votación Cerradas</h3>
             </ng-template>
-            <ng-template let-vota pTemplate="item">
+            <ng-template let-vota2 pTemplate="item">
                 <div>
                     <div class="row flex">
                         
                         <div class="col-6">
                             <h5 class="font-light underline" >Titulo Votación:</h5>
-                            <h6> {{vota.titulo | uppercase }} </h6> 
+                            <h6> {{vota2.titulo | uppercase }} </h6> 
     
                         </div>
                         <div class="col-6" >
-                            <button pButton >Ver detalle</button>
+                        <button pButton
+                            routerLink="/panel/tarjeta/{{vota2._id}}" >
+                            Ver detalle
+                        </button>
                         </div>
                     </div>
                 </div>

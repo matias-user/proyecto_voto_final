@@ -64,7 +64,7 @@ export class VotoComponent implements OnInit {
   
         } 
         )
-      ).subscribe( console.log )
+      ).subscribe( )
     }
 
      
