@@ -14,6 +14,7 @@ import { PanelService } from '../panel.service';
 export class VotoComponent implements OnInit {
   opcionesVoto!: any[];
   isVotoUsuario: boolean = true;
+  xToken!: string | any;
 
   constructor( private fb : FormBuilder,
               private panelService: PanelService,
@@ -26,11 +27,12 @@ export class VotoComponent implements OnInit {
 
   ngOnInit(): void {
     const _id = localStorage.getItem('_id');
+    this.xToken = localStorage.getItem('x-token');
 
     this.activatedRoute.params.pipe(
       switchMap( objId => this.panelService.fetchUnaEncuesta( objId.id ) ),
       tap( (votacion:any) =>{
-        // console.log(votacion.encuestas.usuarioVoto);
+        console.log(votacion.encuestas.usuarioVoto);
         
         const filtrarPorUsuario = votacion.encuestas.usuarioVoto.filter( (uid:string) => uid.slice(0,24) == _id );
         if( filtrarPorUsuario.length > 0 ){
@@ -51,8 +53,9 @@ export class VotoComponent implements OnInit {
     }else{
 
       this.activatedRoute.params.pipe(
-        switchMap( objId => this.panelService.votar( objId.id, seleccion ) ),
+        switchMap( objId => this.panelService.votar( objId.id, seleccion, this.xToken ) ),
         tap( (result:any) => {
+          
           this.isVotoUsuario = false;
           result.msg ? this.messageService.add( {severity:'success', summary:'Votación Exitosa', detail:`Listo, haz votado por ${seleccion}`} 
             ) : 

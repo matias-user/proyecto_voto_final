@@ -84,12 +84,9 @@ export class FormularioVotacionComponent implements OnInit {
     this.valorFormulario.emit( { fin, titulo } );
     // this.miFormulario.reset();
   }
-  // crearInputs( arr: string[] ){
-  //   for( const value of arr ){
-  //     const 
-      
-  //   }
-  // }
+  borrar( indice: number ){
+    this.opcionesVotar.removeAt(indice);
+  }
   campoEsValido( campo: string ){
     return this.miFormulario.controls[campo].errors 
     && this.miFormulario.controls[campo].touched;

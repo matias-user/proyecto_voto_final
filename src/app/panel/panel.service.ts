@@ -8,7 +8,7 @@ import { Encuesta } from '../interfaces/encuesta.interface';
 })
 export class PanelService {
 
-  url: string = environment.urlApis + 'api/encuestas/';
+  url: string = environment.urlApis + 'api/encuestas';
 
   constructor( private http: HttpClient ) { }
 
@@ -26,10 +26,15 @@ export class PanelService {
     return this.http.get( this.url ,  { headers: { 'x-token': token }} );
   }
   fetchUnaEncuesta( _id: string ){    
-    return this.http.get( this.url  + _id );
+    return this.http.get( this.url  + `/${_id}`  );
   }
-  votar( _id:string, value: string ){
-    return this.http.put( this.url + `/${_id}/${value }`, value );
+  votar( _id:string, value: string, token: string ){
+    
+    return this.http.put( this.url + `/${_id}/${value }`,value,{
+      headers:{
+        'x-token': token
+      }
+    } );
   }
   fetchBorrarEncuesta( uid: string ){
     return this.http.delete( this.url + uid );
