@@ -16,7 +16,7 @@
                 </div>
                 
 
-                <div class="p-field col-5">
+                <div class="p-field col-5" *ngIf="!isModificar" >
                     <label for="titulo">Opciones votar: </label>
                     <div class="p-inputgroup">
                         <input type="text" pInputText id="opcion"

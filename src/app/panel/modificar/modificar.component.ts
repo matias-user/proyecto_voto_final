@@ -17,6 +17,7 @@ export class ModificarComponent implements OnInit {
   tituloDeVotacion!: string;
   fechaFin!: Date;
   uid!: string;
+
   constructor( private messageService: MessageService,
                 private panelService: PanelService,
                 private activatedRoute: ActivatedRoute,
@@ -27,7 +28,8 @@ export class ModificarComponent implements OnInit {
       pluck('id'),
       tap( uid => this.uid = uid),
       switchMap( uid => this.panelService.fetchUnaEncuesta( uid ) ),
-      tap( (votacion:any) =>{
+      tap( (votacion:any) =>{        
+        
         this.votacion = votacion;
         this.fechaFin = votacion.encuestas.fin;        
         this.tituloDeVotacion = votacion.encuestas.titulo;

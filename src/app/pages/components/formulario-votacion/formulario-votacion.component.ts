@@ -14,13 +14,14 @@ export class FormularioVotacionComponent implements OnInit {
   @Input() tituloForm: string = '';
   @Input() FechafinForm!: Date;
   @Input() modifiOCrear!: boolean;
+  @Input() isModificar!: boolean;
 
   es: any;
   miFormulario :FormGroup = this.fb.group({
     titulo: [this.tituloForm, Validators.required ],
     inicio: [ new Date(),  ],
     fin: [this.FechafinForm, Validators.required ],
-    opcionesVoto :  this.fb.array( [],Validators.required ), 
+    opcionesVoto :  this.fb.array(  [] ,Validators.required ), 
   });
   // Este control es en cual se agregan los valores a opcionesVoto
   opciones: FormControl = new FormControl( '', Validators.required ); 
@@ -28,20 +29,20 @@ export class FormularioVotacionComponent implements OnInit {
 
   get opcionesVotar(){
         
-    return  this.miFormulario.get('opcionesVoto') as FormArray;
-    
+    return this.miFormulario.get('opcionesVoto') as FormArray;
   };
 
   constructor( private fb: FormBuilder,
                ) { }
 
-  ngOnInit(): void {     
+  ngOnInit(): void {   
     setTimeout(() => {
       
+      // this.crearInputs( this.arrVotacion );  
       this.miFormulario.get('titulo')?.setValue(this.tituloForm);
       this.FechafinForm ? this.miFormulario.get('fin')?.setValue( new Date(this.FechafinForm)  ) : null;
-
-    }, 300);
+      
+    }, 800);
 
     this.es = {
       firstDayOfWeek: 1,
@@ -75,13 +76,20 @@ export class FormularioVotacionComponent implements OnInit {
     this.miFormulario.reset();
   } 
   modificarEncuesta(){
-    if( this.miFormulario.invalid ){
+    if( this.miFormulario.get('titulo')?.invalid || this.miFormulario.get('fin')?.invalid ){
       this.miFormulario.markAllAsTouched();
       return;
     }
-    this.valorFormulario.emit( this.miFormulario.value );
+    const { fin, titulo } = this.miFormulario.value;
+    this.valorFormulario.emit( { fin, titulo } );
     // this.miFormulario.reset();
   }
+  // crearInputs( arr: string[] ){
+  //   for( const value of arr ){
+  //     const 
+      
+  //   }
+  // }
   campoEsValido( campo: string ){
     return this.miFormulario.controls[campo].errors 
     && this.miFormulario.controls[campo].touched;

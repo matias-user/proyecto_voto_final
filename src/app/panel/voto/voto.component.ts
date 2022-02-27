@@ -61,10 +61,10 @@ export class VotoComponent implements OnInit {
             setTimeout(() => {
               this.router.navigateByUrl('/panel/ver')
             }, 2000);
-  
+                
         } 
         )
-      ).subscribe( )
+      ).subscribe( )  
     }
 
      
