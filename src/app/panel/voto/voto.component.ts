@@ -53,7 +53,7 @@ export class VotoComponent implements OnInit {
       this.activatedRoute.params.pipe(
         switchMap( objId => this.panelService.votar( objId.id, seleccion ) ),
         tap( (result:any) => {
-          
+          this.isVotoUsuario = false;
           result.msg ? this.messageService.add( {severity:'success', summary:'Votación Exitosa', detail:`Listo, haz votado por ${seleccion}`} 
             ) : 
             {severity:'error', summary:'Votación Fallida', detail:'Hubo un error!'} 
