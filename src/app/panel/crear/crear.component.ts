@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { tap } from 'rxjs/operators';
 import { Encuesta } from 'src/app/interfaces/encuesta.interface';
 import { PanelService } from '../panel.service';
 

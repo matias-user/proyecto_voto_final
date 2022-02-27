@@ -10,10 +10,10 @@ import { Encuesta } from 'src/app/interfaces/encuesta.interface';
 export class FormularioVotacionComponent implements OnInit {
   
   @Input() titulo: string = '';
-  @Input() nombreBoton!: string;
   @Output() valorFormulario: EventEmitter<Encuesta> = new EventEmitter();
   @Input() tituloForm: string = '';
   @Input() FechafinForm!: Date;
+  @Input() modifiOCrear!: boolean;
 
   es: any;
   miFormulario :FormGroup = this.fb.group({
@@ -39,7 +39,7 @@ export class FormularioVotacionComponent implements OnInit {
     setTimeout(() => {
       
       this.miFormulario.get('titulo')?.setValue(this.tituloForm);
-      this.miFormulario.get('fin')?.setValue( new Date(this.FechafinForm)  );
+      this.FechafinForm ? this.miFormulario.get('fin')?.setValue( new Date(this.FechafinForm)  ) : null;
 
     }, 300);
 
@@ -67,7 +67,6 @@ export class FormularioVotacionComponent implements OnInit {
   }
   guardarEncuesta(){
     if( this.miFormulario.invalid ){
-      console.log('invalido');
       this.miFormulario.markAllAsTouched();
       return;
     }
@@ -75,8 +74,13 @@ export class FormularioVotacionComponent implements OnInit {
     this.valorFormulario.emit( this.miFormulario.value );
     this.miFormulario.reset();
   } 
-  editarEncuesta(){
-    
+  modificarEncuesta(){
+    if( this.miFormulario.invalid ){
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+    this.valorFormulario.emit( this.miFormulario.value );
+    // this.miFormulario.reset();
   }
   campoEsValido( campo: string ){
     return this.miFormulario.controls[campo].errors 

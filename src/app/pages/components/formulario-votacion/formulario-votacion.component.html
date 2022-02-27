@@ -77,13 +77,26 @@
                 </div>
 
             </div>
-            <div class="grid">
-                <div class="col-5" >
+            <div class="grid" 
+                    
+                     >
+                <div class="col-5" *ngIf="modifiOCrear; else elseBlock" >
                     <button pButton type="button"
-                        label="{{nombreBoton}}" class="mt-2 p-button-outlined"
+                        label="Crear" class="mt-2 p-button-outlined"
                         (click)="guardarEncuesta()" >
                     </button>
                 </div>
+
+                <ng-template #elseBlock >
+
+                    <div class="col-5" >
+                        <button pButton type="button"
+                            label="Modificar" class="mt-2 p-button-secondary"
+                            (click)="modificarEncuesta()" >
+                        </button>
+                    </div>
+                </ng-template>
+
             </div>
             
         </form>

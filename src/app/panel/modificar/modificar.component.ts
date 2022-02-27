@@ -16,7 +16,7 @@ export class ModificarComponent implements OnInit {
   votacion!: any;
   tituloDeVotacion!: string;
   fechaFin!: Date;
-
+  uid!: string;
   constructor( private messageService: MessageService,
                 private panelService: PanelService,
                 private activatedRoute: ActivatedRoute) { }
@@ -24,6 +24,7 @@ export class ModificarComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.pipe( 
       pluck('id'),
+      tap( uid => this.uid = uid),
       switchMap( uid => this.panelService.fetchUnaEncuesta( uid ) ),
       tap( (votacion:any) =>{
         this.votacion = votacion;
@@ -35,6 +36,11 @@ export class ModificarComponent implements OnInit {
   }
   recibiendoValor( value : Encuesta){
     this.messageService.add( { severity:'success', detail:'Encuesta modificada!' } );
+    this.xToken = localStorage.getItem('x-token');  
+      console.log(value);
+      
+    this.panelService.fetchActualizarEncuesta( this.uid, value )
+    .subscribe();
   }
 
 }

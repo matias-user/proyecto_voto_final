@@ -34,4 +34,7 @@ export class PanelService {
   fetchBorrarEncuesta( uid: string ){
     return this.http.delete( this.url + uid );
   }
+  fetchActualizarEncuesta( uid: string, body: Encuesta ){
+    return this.http.put( this.url + uid, body );
+  }
 }
