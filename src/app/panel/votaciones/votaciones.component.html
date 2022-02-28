@@ -13,9 +13,19 @@
                     <p>Opción con más votos: 
                         <span class="font-bold" >{{votacionMasVotada}} </span> 
                     </p>
-                    <button pButton routerLink='/panel/voto/{{votacion._id}}' >
+                    <button id="btnMio"
+                            pButton 
+                            routerLink='/panel/voto/{{votacion._id}}'
+                            class="p-button-sm"
+                            >
                         Link Votacion
                     </button>
+                    <button pButton class="p-button-info p-button-sm mx-2" 
+                            (click)="copiarPortapapeles( votacion._id )"
+                             >
+                        Copiar link Votacion
+                    </button>
+
 
                 </div>
             </p-card>
@@ -28,3 +38,4 @@
         </div>
     </div>
 </p-card>
+<p-toast></p-toast>

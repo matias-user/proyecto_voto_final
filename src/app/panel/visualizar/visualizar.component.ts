@@ -33,7 +33,7 @@ export class VisualizarComponent implements OnInit {
               result.encuestas.filter( (votacion:any) => {
                 // votacion.estado 
                 
-                if( Number( new Date(votacion.fin ).getTime() )  > this.fechaHoy && votacion.estado && votacion.fin ){
+                if( Number( new Date(votacion.fin ).getTime() )  >= this.fechaHoy && votacion.estado && votacion.fin ){
                   return votacion 
                 }
               } );

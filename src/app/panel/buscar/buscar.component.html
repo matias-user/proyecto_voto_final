@@ -1,45 +1,35 @@
-
 <p-card>
-    <div class="p-inputgroup">
-        <input type="text" pInputText [(ngModel)]="termino" placeholder="Titulo Votacion, ID Votacion">         
-        <button 
-            type="button" 
-            pButton 
-            pRipple 
-            icon="pi pi-search" 
-            styleClass="p-button-success"
-            (click)="buscar()" 
-            >
-        </button>      
+    <div class="p-inputgroup col-6">
+        <input type="text" pInputText [(ngModel)]="termino" placeholder="Titulo Votacion, ID Votacion">
+        <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-success" (click)="buscar()">
+        </button>
     </div>
     <span class="p-input-icon-left">
     </span>
-    <p-table [value]="arrVotacionEncontradas" 
-                class="mt-5"
-                styleClass="p-datatable-sm"
-                >
-        <ng-template pTemplate="header" let-columns >
+    <p-table [value]="arrVotacionEncontradas"  >
+        <ng-template pTemplate="header" let-columns>
             <tr>
                 <th>Titulo</th>
                 <th>Link Detalle</th>
+                <th>Creado por Usuario:</th>
             </tr>
         </ng-template>
         <ng-template let-votacion pTemplate="body" let-columns="columns">
             <tr>
-                <td  > 
+                <td>
                     {{votacion.titulo}}
                 </td>
                 <td>
 
-                    <button pButton  
-                            class="p-button-info p-button-sm"
-                            (click)="irVotacion(votacion._id)"
-                        >
+                    <button pButton class="p-button-info p-button-sm" (click)="irVotacion(votacion._id)">
                         Ir a Votacion
                     </button>
                 </td>
+                <td>
+                    {{ votacion.usuario.nombre }}
+                </td>
             </tr>
-            
+
         </ng-template>
     </p-table>
 </p-card>

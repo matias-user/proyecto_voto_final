@@ -1,14 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
 import { Encuesta } from 'src/app/interfaces/encuesta.interface';
+import { environment } from 'src/environments/environment';
 import { PanelService } from '../panel.service';
 
 @Component({
   selector: 'app-votaciones',
   templateUrl: './votaciones.component.html',
-  styleUrls: ['./votaciones.component.css']
+  styleUrls: ['./votaciones.component.css'],
+  providers:[MessageService]
 })
 export class VotacionesComponent implements OnInit {
   multiAxisData: any;
@@ -23,7 +26,8 @@ export class VotacionesComponent implements OnInit {
   @Input() backGroundInput!: string[];
   
   constructor( private route: ActivatedRoute,
-                private panelService: PanelService ) {
+                private panelService: PanelService,
+                private messageService: MessageService ) {
     // capturando id en routeParams y luego haciendo fetch a encuesta por id
     this.route.params.pipe(
         map(p => p.id),
@@ -75,6 +79,18 @@ export class VotacionesComponent implements OnInit {
 
       }   )
      ) .subscribe(  )
+  }
+  copiarPortapapeles(uid:string | undefined){
+    const linkPagina = environment.urlApis + `panel/voto/${uid}`;
+    
+    navigator.clipboard.writeText(linkPagina)
+      .then( ()=>{
+        this.messageService.add({severity:'info', detail:'Has copiado el link en portapapeles'});
+        
+      } );
+    setTimeout(() => {
+      this.messageService.clear();
+    }, 1900);
   }
   generarDatosGrafica( votaciones: any ){
     const labels = Object.keys( votaciones );

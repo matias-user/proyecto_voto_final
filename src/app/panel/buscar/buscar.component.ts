@@ -22,11 +22,10 @@ export class BuscarComponent implements OnInit {
       tap( (result:any) => {
         this.arrVotacionEncontradas = result.results[0];
       } )
-    ).subscribe( console.log )
+    ).subscribe( )
     
   }
   irVotacion(_id:string ){
-    console.log(_id);
     
     this.router.navigateByUrl(`/panel/tarjeta/${_id}`);
   }
