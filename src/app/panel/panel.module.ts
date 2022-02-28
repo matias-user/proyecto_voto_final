@@ -11,6 +11,7 @@ import { VisualizarComponent } from './visualizar/visualizar.component';
 import { VotacionesComponent } from './votaciones/votaciones.component';
 import { VotoComponent } from './voto/voto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BuscarComponent } from './buscar/buscar.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModificarComponent,
     VisualizarComponent,
     VotacionesComponent,
-    VotoComponent
+    VotoComponent,
+    BuscarComponent
   ],
   imports: [
     CommonModule,
     PanelRoutingModule,
     PrimeNgModule,
     PagesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PanelModule { }

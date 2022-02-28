@@ -11,6 +11,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
+
 // Chartjs
 import {ChartModule} from 'primeng/chart';
 

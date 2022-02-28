@@ -9,6 +9,7 @@ import { Encuesta } from '../interfaces/encuesta.interface';
 export class PanelService {
 
   url: string = environment.urlApis + 'api/encuestas';
+  urlBuscar : string = environment.urlApis + 'api/buscar';
 
   constructor( private http: HttpClient ) { }
 
@@ -37,9 +38,12 @@ export class PanelService {
     } );
   }
   fetchBorrarEncuesta( uid: string ){
-    return this.http.delete( this.url + uid );
+    return this.http.delete( this.url + `/${uid}` );
   }
   fetchActualizarEncuesta( uid: string, body: Encuesta ){
     return this.http.put( this.url + uid, body );
+  }
+  fetchBuscarEncuesta( termino: string ){
+    return this.http.get( this.urlBuscar + `/${termino}` );
   }
 }

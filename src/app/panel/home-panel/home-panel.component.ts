@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class HomePanelComponent implements OnInit {
 
   items!: MenuItem[];
-
+  
   constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -30,6 +30,11 @@ export class HomePanelComponent implements OnInit {
         routerLink: '/panel/ver',
         icon: PrimeIcons.EYE
 
+      },
+      {
+        label:'Buscar una Votacion',
+        routerLink: '/panel/buscar',
+        icon: PrimeIcons.SEARCH
       },
       {
           label: 'Cerrar sesión',

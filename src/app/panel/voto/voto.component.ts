@@ -32,7 +32,6 @@ export class VotoComponent implements OnInit {
     this.activatedRoute.params.pipe(
       switchMap( objId => this.panelService.fetchUnaEncuesta( objId.id ) ),
       tap( (votacion:any) =>{
-        console.log(votacion.encuestas.usuarioVoto);
         
         const filtrarPorUsuario = votacion.encuestas.usuarioVoto.filter( (uid:string) => uid.slice(0,24) == _id );
         if( filtrarPorUsuario.length > 0 ){

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BuscarComponent } from './buscar/buscar.component';
 import { CrearComponent } from './crear/crear.component';
 import { HomePanelComponent } from './home-panel/home-panel.component';
 import { ModificarComponent } from './modificar/modificar.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path:'ver', component: VisualizarComponent },
       { path:'tarjeta/:id', component: VotacionesComponent },
       { path: 'voto/:id', component: VotoComponent },
+      { path: 'buscar', component: BuscarComponent },
       { path:'**', redirectTo: 'ver' }
      ]
   },
