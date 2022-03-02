@@ -20,18 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.items = [
-      {
-        label: 'Ingresa a tu Cuenta',
-        routerLink: '/auth',
-        icon: PrimeIcons.USER,
-      },
-      {
-        label: 'Panel de Votaciones',
-        routerLink: '/panel',
-        icon: PrimeIcons.PENCIL,
-      },
-    ],
+    
       this.data = {
         labels: [ `Pizza`, `Empanadas`, `Sushi`, `Arepas` ],
         datasets: [

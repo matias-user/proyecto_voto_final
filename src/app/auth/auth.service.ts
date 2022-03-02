@@ -24,6 +24,7 @@ export class AuthService {
     return this.http.post( environment.urlApis + this.pathApiLogin, body);
   }
   verificarSiLogeado(): Observable<boolean> {
+    
     if(!localStorage.getItem('isLog')){
       return of(false);
       

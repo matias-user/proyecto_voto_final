@@ -18,11 +18,14 @@ export class BuscarComponent implements OnInit {
   ngOnInit(): void {
   }
   buscar(){
-    this.panelService.fetchBuscarEncuesta( this.termino ).pipe(
-      tap( (result:any) => {
-        this.arrVotacionEncontradas = result.results[0];
-      } )
-    ).subscribe( )
+    if( this.termino ){
+
+      this.panelService.fetchBuscarEncuesta( this.termino ).pipe(
+        tap( (result:any) => {
+          this.arrVotacionEncontradas = result.results[0];
+        } )
+      ).subscribe( )
+    }
     
   }
   irVotacion(_id:string ){

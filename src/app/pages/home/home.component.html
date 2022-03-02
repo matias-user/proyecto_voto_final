@@ -1,47 +1,53 @@
-<header>
-    <p-menubar *ngIf="isLog |async" [model]="items" styleClass="surface-200" ></p-menubar>
-</header>
+<body  >
+    <header>
+        <div class="bg-blue-500 border-round shadow-2" >
+            <h1 class="scalein text-white 
+                uppercase
+                text-shadow text-left ml-4 
+                text-7xl">
+                Vota Online
+            </h1>
 
-<main class="text-center">
-    <h1 class="scalein capitalize text-800 text-left  ml-4 text-7xl">Votaciones Online</h1>
-    <hr class="mx-5 shadow-5">
-    <div class="grid flex justify-content-around">
-
-        <div class="col-5 text-justify">
-            <p class="text-5xl font-semibold text-700">
-                Crea votaciones, lleva un historial, visualiza con gráfica,
-                pon una fecha límite de cierre.
-            </p>
-
-            <div class="text-center" >
-
-                <button pButton type="button" class="p-button-raised mr-4" routerLink="/auth/registro">
-                    Crear cuenta
-                </button>
-
-                <button pButton type="button" class="p-button-info p-button-raised" routerLink="/auth/login">
-                    Iniciar Sesion
-                </button>
-
+        </div>
+    
+    </header>
+    
+    <main class="text-center">
+    
+        <div class="flex justify-content-around">
+    
+            <div class="col-6 text-justify">
+                <p class="text-5xl font-semibold texto-gradiente ">
+                    Crea votaciones, mantelas guardadas, elige las opciones a votar, 
+                    visualiza con gráfica,
+                    pon una fecha límite de cierre.
+                </p>
+    
+                <div class="text-center mt-7" >
+    
+                    <button pButton type="button" class="p-button-raised mr-4 p-button-success" routerLink="/auth/registro">
+                        Crear cuenta
+                    </button>
+    
+                    <button pButton type="button" class="p-button-info p-button-raised" routerLink="/auth/login">
+                        Iniciar Sesion
+                    </button>
+    
+                </div>
+            </div>
+            <div class="col-5">
+                <p-card styleClass="surface-200 h-0 transparent" >
+                    <h3 class="text-xl text-blue-700">
+                        Nombre Votacion:
+                        <span class="font-light text-700">Comida para día Viernes</span>
+                    </h3>
+                    <app-grafica [type]="'pie'" [data]="data"></app-grafica>
+    
+                </p-card>
             </div>
         </div>
-        <div class="col-5">
-            <p-card styleClass="surface-200">
-                <h3 class="text-xl">
-                    Nombre Votacion:
-                    <span class="font-light text-700">Comida para día Viernes</span>
-                </h3>
-                <app-grafica [type]="'pie'" [data]="data">
-                </app-grafica>
-
-                <ng-template pTemplate="footer">
-
-
-                </ng-template>
-            </p-card>
-        </div>
-    </div>
-
-
-
-</main>
+    
+    
+    
+    </main>
+</body>
