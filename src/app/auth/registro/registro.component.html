@@ -1,20 +1,25 @@
 <p-card header="Registrar Usuario" class="flex justify-content-center" >
     <form class="flex flex-column" [formGroup]="formRegistro" (ngSubmit)="crearCuenta()" >
         
-        <input type="text" formControlName="correo" pInputText 
+        <label for="correo">Correo electrónico</label>
+        <input type="text" formControlName="correo" pInputText name="correo"
             placeholder="Correo" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('correo') }"> 
             
+        <label class="mt-2" >Nombre</label>
+
         <input type="text" class="mt-2" formControlName="nombre" pInputText 
             placeholder="nombre" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('nombre') }"> 
 
+        <label class="mt-2" >Contraseña</label>
         <input type="password" class="mt-2" formControlName="password" pInputText 
             placeholder="Contraseña" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('password') }">         
 
+        <label class="mt-2" >Rut</label>
         <input type="text" class="mt-2" formControlName="rut" pInputText 
             placeholder="Rut" [ngClass]="{'ng-invalid ng-dirty':campoEsValido('rut') }">
 
+        <label class="mt-3" >Edad</label>
         <div class="p-inputgroup mt-2 align-items-center">
-
             <input type="number" class="h-3rem" pInputText 
             [ngClass]="{'ng-invalid ng-dirty':campoEsValido('edad') }"
                 placeholder="Edad" min="0" max="120" formControlName="edad" >
