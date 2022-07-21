@@ -1,6 +1,8 @@
 <p-card>
-    <div class="p-inputgroup col-6">
-        <input type="text" pInputText [(ngModel)]="termino" placeholder="Titulo Votacion, ID Votacion">
+    <div class="p-inputgroup col-12 sm:col-6">
+        <input type="text" 
+            pInputText [(ngModel)]="termino" 
+            placeholder="Titulo Votacion, ID Votacion, sensible a mayusculas">
         <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-success" (click)="buscar()">
         </button>
     </div>

@@ -1,6 +1,6 @@
 <section class="my-2 mx-1 grid">
     
-    <div class="col-6 mr-2">
+    <div class="col-6 mr-2 separador">
     
         <p-virtualScroller [value]="votacionesAbiertas" 
             scrollHeight="500px" 
@@ -17,7 +17,7 @@
                         
                         <div class="col-4">
                             <h5 class="font-light underline " >Titulo Votación:</h5>
-                            <h6> {{vota.titulo | uppercase }} </h6> 
+                            <h6> {{vota.titulo }} </h6> 
     
                         </div>
                         <div class="col-8" >
@@ -51,7 +51,7 @@
         </p-virtualScroller>
     </div>
 
-    <div class="col-5">
+    <div class="col-5 separador">
         
 
         <p-virtualScroller [value]="votacionesCerradas" 
@@ -66,7 +66,7 @@
                         
                         <div class="col-6">
                             <h5 class="font-light underline" >Titulo Votación:</h5>
-                            <h6> {{vota2.titulo | uppercase }} </h6> 
+                            <h6> {{vota2.titulo }} </h6> 
     
                         </div>
                         <div class="col-6" >

@@ -23,6 +23,8 @@ export class BuscarComponent implements OnInit {
       this.panelService.fetchBuscarEncuesta( this.termino ).pipe(
         tap( (result:any) => {
           this.arrVotacionEncontradas = result.results[0];
+          console.log(result.results);
+          
         } )
       ).subscribe( )
     }

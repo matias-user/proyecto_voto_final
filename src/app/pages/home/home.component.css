@@ -4,14 +4,28 @@
 .text-shadow{
     text-shadow: .5px .5px 2px #000;
 }
-.texto-gradiente {
-    background: transparent; /* fallback for old browsers */
-    background: -webkit-linear-gradient(130deg, var(--blue-500) ,40%, #ffffff,#ffffff ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(130deg, var(--blue-500) ,40%, #ffffff,#ffffff ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.ilustracion{
+    width: 100%;
 }
 .w-100{
     width: 100%;
+}
+.container{
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+@media( max-width: 480px) {
+    header div{
+        margin-bottom: .2rem !important;
+    }
+    h1{
+        font-size:2.5rem!important;
+    }
+    p{
+        font-size: 1.7rem !important;
+    }
+    button{
+        margin: .5rem 0 !important;
+    }
 }

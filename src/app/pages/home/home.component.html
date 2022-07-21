@@ -1,52 +1,68 @@
-<body  >
-    <header class="mb-8" >
-        <div class="bg-blue-500 border-round-bottom shadow-2 absolute w-100 top-0 left-0 " >
-            <h1 class="scalein text-white 
+<header class="mb-8">
+    <div class="bg-blue-500 border-round-bottom shadow-2 py-2 flex-wrap  absolute w-100 top-0 left-0 flex">
+        <h1 class="scalein text-white 
                 uppercase
-                text-shadow text-left ml-4 
-                text-7xl
+                text-left mx-8 
+                md:text-6xl
                 ">
-                Vota Online
-            </h1>
+            Tu web - Vota Online
+        </h1>
+        <button pButton type="button" class="p-button-raised md mr-4 p-button-success ml-auto" routerLink="/auth/registro">
+            Crear cuenta
+        </button>
+
+        <button pButton type="button" class="p-button-info p-button-raised" routerLink="/auth/login">
+            Iniciar Sesión
+        </button>
+    </div>
+
+</header>
+
+<main class="mt-8 pt-5 container">
+
+    <div class="grid gap-2 align-items-center">
+
+        <div class="col-12 md:col-6">
+            <p class="text-4xl font-semibold text-center md:text-left text-700 line-height-3">
+                Crea votaciones online, mantén un historial de ellas, pon una fecha de límite y no te preocupes de cerrarlas, busca votaciones de otras personas en el buscador, despreocupate de que un usuario quiera votar mas de una vez. 
+
+            </p>
 
         </div>
-    
-    </header>
-    
-    <main class="text-center mt-5">
-    
-        <div class="flex justify-content-around">
-    
-            <div class="col-6 text-justify">
-                <p class="text-5xl font-semibold texto-gradiente ">
-                    Crea votaciones, mantelas guardadas, elige las opciones a votar, 
-                    visualiza con gráfica,
-                    pon una fecha límite de cierre.
-                </p>
-    
-                <div class="text-center mt-7" >
-    
-                    <button pButton type="button" class="p-button-raised mr-4 p-button-success" routerLink="/auth/registro">
-                        Crear cuenta
-                    </button>
-    
-                    <button pButton type="button" class="p-button-info p-button-raised" routerLink="/auth/login">
-                        Iniciar Sesión
-                    </button>
-    
-                </div>
-            </div>
-            <div class="col-5">
-                <p-card styleClass="surface-200 h-0 transparent" >
+
+        <div class="col-12 md:col-6">
+
+            <img src="../../../assets/images/survay.svg" alt="ilustracion" class="ilustracion">
+        </div>
+    </div>
+
+    <section class="mt-5" >
+        <div class="grid gap-3 align-items-center">
+            <div class="col-12 md:col-6">
+                <p-card styleClass="surface-200 h-0 transparent">
                     <h3 class="text-xl text-blue-700">
                         Nombre Votacion:
                         <span class="font-light text-700">Comida para día Viernes</span>
                     </h3>
                     <app-grafica [type]="'pie'" [data]="data"></app-grafica>
-    
+            
                 </p-card>
+
+            </div>
+            <div class="col-12 md:col-6">
+                <h3 class="text-700 text-4xl text-center md:text-left line-height-3" >
+                    Visualiza tu información a traves de grafica !
+                </h3>
             </div>
         </div>
-    
-    </main>
-</body>
+
+    </section>
+
+    <section class="text-center my-6">
+        <h2 class="text-800 my-3 underline uppercase font-light" >¡Crea una cuenta ya!</h2>
+        <button pButton type="button" class="p-button-raised mr-4 p-button-warning uppercase font-bold" routerLink="/auth/registro">
+            Crear cuenta
+        </button>
+
+    </section>
+</main>
